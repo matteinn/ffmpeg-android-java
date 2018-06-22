@@ -1,6 +1,7 @@
 package com.github.hiteshsondhi88.libffmpeg;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.text.TextUtils;
 
 import java.lang.reflect.Array;
@@ -51,7 +52,7 @@ public class FFmpeg implements FFmpegInterface {
 
         if (!TextUtils.isEmpty(cpuArchNameFromAssets)) {
             ffmpegLoadLibraryAsyncTask = new FFmpegLoadLibraryAsyncTask(context, cpuArchNameFromAssets, ffmpegLoadBinaryResponseHandler);
-            ffmpegLoadLibraryAsyncTask.execute();
+            ffmpegLoadLibraryAsyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         } else {
             throw new FFmpegNotSupportedException("Device not supported");
         }
