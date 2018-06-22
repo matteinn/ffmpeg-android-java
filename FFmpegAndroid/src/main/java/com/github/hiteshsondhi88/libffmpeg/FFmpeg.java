@@ -67,7 +67,7 @@ public class FFmpeg implements FFmpegInterface {
             String[] ffmpegBinary = new String[] { FileUtils.getFFmpeg(context, environvenmentVars) };
             String[] command = concatenate(ffmpegBinary, cmd);
             ffmpegExecuteAsyncTask = new FFmpegExecuteAsyncTask(command , timeout, ffmpegExecuteResponseHandler);
-            ffmpegExecuteAsyncTask.execute();
+            ffmpegExecuteAsyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         } else {
             throw new IllegalArgumentException("shell command cannot be empty");
         }
